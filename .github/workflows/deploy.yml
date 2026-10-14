@@ -30,7 +30,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Vite site
+      - name: Install WebP encoder
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes webp
+
+      - name: Build Vite site (optimizes local images first)
         run: npm run build
 
       - name: Configure GitHub Pages

@@ -12,7 +12,10 @@
     "musica"
   ],
   "scripts": {
+    "optimize:images": "bash scripts/optimize-images.sh",
+    "predev": "npm run optimize:images",
     "dev": "vite",
+    "prebuild": "npm run optimize:images",
     "build": "vite build",
     "preview": "vite preview"
   },

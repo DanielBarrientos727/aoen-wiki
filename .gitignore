@@ -1,0 +1,10 @@
+# Dependencias y compilación
+node_modules/
+dist/
+
+# Fotos WebP generadas a partir de las fotos oficiales
+public/img/*.webp
+
+# Archivos temporales
+*.log
+npm-debug.log*

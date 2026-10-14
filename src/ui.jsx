@@ -1,10 +1,5 @@
 import { useState } from 'react';
 
-const IMAGE_PROXY = 'https://wsrv.nl/';
-
-const optimizedImage = (src, width) =>
-  `${IMAGE_PROXY}?url=${encodeURIComponent(src)}&w=${width}&output=webp&q=72&maxage=1y&we`;
-
 export const fmt = d =>
   new Date(d + 'T00:00:00').toLocaleDateString('es', {
     day: 'numeric',
@@ -37,10 +32,9 @@ export function Img({
   sizes = '(max-width: 860px) 50vw, 28vw',
 }) {
   const [failedSrc, setFailedSrc] = useState(null);
-  const widths = [320, 480, 640, 960];
 
-  // Si falla la versión optimizada, no se solicita la foto original a tamaño completo.
-  // Esto evita que una caída del servicio de imágenes vuelva a disparar el consumo de memoria.
+  // Las fotos se guardan como WebP dentro de public/img.
+  // Si falta alguna, mostramos el respaldo en vez de pedir originales enormes.
   if (failedSrc === src) {
     return (
       <div className="imgfb" role="img" aria-label={alt}>
@@ -49,12 +43,17 @@ export function Img({
     );
   }
 
+  let srcSet;
+  if (src.endsWith('-640.webp')) {
+    srcSet = `${src.replace('-640.webp', '-320.webp')} 320w, ${src} 640w`;
+  } else if (src.endsWith('-960.webp')) {
+    srcSet = `${src.replace('-960.webp', '-640.webp')} 640w, ${src} 960w`;
+  }
+
   return (
     <img
-      src={optimizedImage(src, 640)}
-      srcSet={widths
-        .map(width => `${optimizedImage(src, width)} ${width}w`)
-        .join(', ')}
+      src={src}
+      srcSet={srcSet}
       sizes={sizes}
       alt={alt}
       width={w}
@@ -63,7 +62,6 @@ export function Img({
       decoding="async"
       fetchPriority={eager ? 'high' : 'auto'}
       onError={() => setFailedSrc(src)}
-      referrerPolicy="no-referrer"
     />
   );
 }
