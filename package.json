@@ -1,4 +1,4 @@
-<escape>{
+{
   "name": "aoen-wiki",
   "version": "1.0.0",
   "private": true,
@@ -24,4 +24,4 @@
     "@vitejs/plugin-react": "^4.3.1",
     "vite": "^5.4.0"
   }
-}</escape>
+}
