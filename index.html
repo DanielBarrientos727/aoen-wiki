@@ -3,24 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06102e" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="application-name" content="aoen WIKI" />
 
     <title>aoen WIKI — Enciclopedia fan independiente</title>
-
     <meta
       name="description"
       content="Explora aoen WIKI, una enciclopedia fan independiente de aoen con perfiles de sus integrantes, discografía, agenda, cronología y enlaces oficiales."
     />
+    <link rel="canonical" href="https://danielbarrientos727.github.io/aoen-wiki/" />
 
-    <meta name="theme-color" content="#06102e" />
-    <meta name="color-scheme" content="dark" />
-
-    <!-- URL principal -->
-    <link
-      rel="canonical"
-      href="https://danielbarrientos727.github.io/aoen-wiki/"
-    />
-
-    <!-- Vista previa en redes sociales -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CO" />
     <meta property="og:site_name" content="aoen WIKI" />
@@ -29,25 +22,18 @@
       property="og:description"
       content="Integrantes, discografía, cronología, agenda y canales oficiales de aoen, reunidos en una enciclopedia fan independiente."
     />
-    <meta
-      property="og:url"
-      content="https://danielbarrientos727.github.io/aoen-wiki/"
-    />
+    <meta property="og:url" content="https://danielbarrientos727.github.io/aoen-wiki/" />
     <meta
       property="og:image"
       content="https://image.weversejapan.com/official/live/aoen/images/ogp_smt_1200x630_v2.png"
     />
-    <meta
-      property="og:image:alt"
-      content="Imagen oficial promocional de aoen"
-    />
+    <meta property="og:image:alt" content="Imagen oficial promocional de aoen" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-    <!-- Tarjeta para X y otras plataformas compatibles -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="aoen WIKI — Enciclopedia fan independiente"
-    />
+    <meta name="twitter:title" content="aoen WIKI — Enciclopedia fan independiente" />
     <meta
       name="twitter:description"
       content="Una enciclopedia fan independiente dedicada a aoen."
@@ -57,30 +43,24 @@
       content="https://image.weversejapan.com/official/live/aoen/images/ogp_smt_1200x630_v2.png"
     />
 
-    <!-- Favicon: SVG integrado, sin archivo adicional -->
     <link
       rel="icon"
       type="image/svg+xml"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306102e'/%3E%3Ccircle cx='32' cy='32' r='14' fill='none' stroke='%2300d4ff' stroke-width='5'/%3E%3C/svg%3E"
     />
 
-    <!-- Conexiones anticipadas para reducir latencia -->
+    <!-- La web usa el proxy solo para entregar las fotos en tamaños pequeños y WebP. -->
+    <link rel="preconnect" href="https://wsrv.nl" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-    <link rel="preconnect" href="https://image.weversejapan.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Fuentes no bloqueantes -->
+    <!-- Tipografías opcionales: su hoja no bloquea el primer renderizado. -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,400&family=Inter:wght@400;600&display=swap"
       media="print"
       onload="this.onload=null;this.media='all'"
     />
-
     <noscript>
       <link
         rel="stylesheet"
@@ -88,18 +68,11 @@
       />
     </noscript>
   </head>
-
   <body>
     <div id="root"></div>
-
     <noscript>
-      <p>
-        aoen WIKI necesita JavaScript para mostrar sus páginas.
-        Activa JavaScript en tu navegador para continuar.
-      </p>
+      <p>aoen WIKI necesita JavaScript para mostrar sus páginas. Activa JavaScript en tu navegador para continuar.</p>
     </noscript>
-
-    <!-- Vite transforma esta ruta al generar la versión de producción -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
