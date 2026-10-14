@@ -7,10 +7,10 @@ const Members=L('Members'),Disco=L('Disco'),Agenda=L('Agenda'),Time=L('Time'),So
 const useHash=()=>{const g=()=>location.hash.replace(/^#\/?/,'')||'inicio';const[h,s]=useState(g);useEffect(()=>{const f=()=>{s(g());scrollTo(0,0)};addEventListener('hashchange',f);return()=>removeEventListener('hashchange',f)},[]);return h};
 const nav=[['inicio','Inicio'],['miembros','Integrantes'],['discografia','Discografía'],['agenda','Agenda'],['cronologia','Cronología'],['redes','Redes']];
 function Home(){const up=events.filter(e=>e.date>=today()).slice(0,3);return<>
-<section className="hero"><div className="heroimg"><Img src={hero.src} alt={hero.alt} name="aoen" eager/></div>
+<section className="hero"><div className="heroimg"><Img src={hero.src} alt={hero.alt} name="aoen" eager sizes="(max-width: 860px) 100vw, 58vw"/></div>
 <div className="herotxt"><p className="meta">Enciclopedia fan · 7 integrantes</p><h1>aoen</h1><p className="lede">Siete voces, un mismo azul: el primer capítulo de un grupo que apenas empieza a escribirse.</p>
 <div className="cta"><a className="btn" href="#/miembros">Entrar a la enciclopedia</a><a className="btn ghost" href="#/agenda">Próximas fechas</a></div></div></section>
-<section className="band"><h2>Siete <em>integrantes</em></h2><div className="strip">{members.map(m=><a key={m.id} href={'#/miembros/'+m.id} className="sm"><Img src={m.img} alt={m.name} name={m.name}/><span>{m.name}<small>{m.jp}</small></span></a>)}</div></section>
+<section className="band"><h2>Siete <em>integrantes</em></h2><div className="strip">{members.map(m=><a key={m.id} href={'#/miembros/'+m.id} className="sm"><Img src={m.img} alt={m.name} name={m.name} sizes="(max-width: 860px) 25vw, 14vw"/><span>{m.name}<small>{m.jp}</small></span></a>)}</div></section>
 <section className="band split"><div><h2>Último <em>lanzamiento</em></h2><p className="big">{releases[0].title}</p><p className="meta">{releases[0].type} · {fmt(releases[0].date)}</p><Ext href={releases[0].url}>Ficha oficial</Ext></div>
 <div><h2>En <em>gira</em></h2>{up.length?up.map(e=><p key={e.date} className="row"><b>{fmt(e.date)}</b><Ext href={e.url}>Detalle oficial</Ext></p>):<p>Sin fechas futuras verificadas.</p>}<a href="#/agenda">Ver agenda completa →</a></div></section></>}
 export default function App(){const h=useHash(),[a,b]=h.split('/');const[open,setOpen]=useState(false),[q,setQ]=useState('');
