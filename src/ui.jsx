@@ -3,7 +3,7 @@ import { useState } from 'react';
 const IMAGE_PROXY = 'https://wsrv.nl/';
 
 const optimizedImage = (src, width) =>
-  `${IMAGE_PROXY}?url=${encodeURIComponent(src)}&w=${width}&output=webp&q=74&maxage=1y&we`;
+  `${IMAGE_PROXY}?url=${encodeURIComponent(src)}&w=${width}&output=webp&q=72&maxage=1y&we`;
 
 export const fmt = d =>
   new Date(d + 'T00:00:00').toLocaleDateString('es', {
@@ -36,10 +36,12 @@ export function Img({
   h = 800,
   sizes = '(max-width: 860px) 50vw, 28vw',
 }) {
-  const [fallback, setFallback] = useState({ src: null, level: 0 });
-  const level = fallback.src === src ? fallback.level : 0;
+  const [failedSrc, setFailedSrc] = useState(null);
+  const widths = [320, 480, 640, 960];
 
-  if (level >= 2) {
+  // Si falla la versión optimizada, no se solicita la foto original a tamaño completo.
+  // Esto evita que una caída del servicio de imágenes vuelva a disparar el consumo de memoria.
+  if (failedSrc === src) {
     return (
       <div className="imgfb" role="img" aria-label={alt}>
         {name}
@@ -47,24 +49,12 @@ export function Img({
     );
   }
 
-  const widths = [320, 480, 640, 960];
-  const imageSrc = level === 1 ? src : optimizedImage(src, 640);
-  const imageSrcSet =
-    level === 1
-      ? undefined
-      : widths.map(width => `${optimizedImage(src, width)} ${width}w`).join(', ');
-
-  const handleError = () => {
-    setFallback(current => ({
-      src,
-      level: current.src === src ? Math.min(current.level + 1, 2) : 1,
-    }));
-  };
-
   return (
     <img
-      src={imageSrc}
-      srcSet={imageSrcSet}
+      src={optimizedImage(src, 640)}
+      srcSet={widths
+        .map(width => `${optimizedImage(src, width)} ${width}w`)
+        .join(', ')}
       sizes={sizes}
       alt={alt}
       width={w}
@@ -72,7 +62,7 @@ export function Img({
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
       fetchPriority={eager ? 'high' : 'auto'}
-      onError={handleError}
+      onError={() => setFailedSrc(src)}
       referrerPolicy="no-referrer"
     />
   );
