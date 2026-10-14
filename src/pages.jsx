@@ -2,10 +2,10 @@ import {useState,useMemo} from 'react';
 import {members,releases,events,timeline,social,OFFICIAL,VERIFIED} from './data.js';
 import {fmt,age,Ext,Img,today} from './ui.jsx';
 export function Members({id}){const m=members.find(x=>x.id===id);
- if(!m)return<section className="page"><h1>Integrantes</h1><div className="grid">{members.map(x=><a key={x.id} href={'#/miembros/'+x.id} className={'mc c'+x.n}><Img src={x.img} alt={x.name} name={x.name}/><span><small>0{x.n}</small>{x.name}<em>{x.jp}</em></span></a>)}</div></section>;
+ if(!m)return<section className="page"><h1>Integrantes</h1><div className="grid">{members.map(x=><a key={x.id} href={'#/miembros/'+x.id} className={'mc c'+x.n}><Img src={x.img} alt={x.name} name={x.name} sizes="(max-width: 860px) 50vw, 40vw"/><span><small>0{x.n}</small>{x.name}<em>{x.jp}</em></span></a>)}</div></section>;
  const i=members.indexOf(m),p=members[(i+6)%7],n=members[(i+1)%7];
  return<section className="page prof"><nav className="crumbs"><a href="#/inicio">Inicio</a> / <a href="#/miembros">Integrantes</a> / {m.name}</nav>
- <div className="pimg"><Img src={m.img} alt={'Retrato oficial de '+m.name} name={m.name} eager/></div>
+ <div className="pimg"><Img src={m.img} alt={'Retrato oficial de '+m.name} name={m.name} eager sizes="(max-width: 860px) 100vw, 45vw"/></div>
  <div><p className="meta">Integrante {m.n} de 7</p><h1>{m.name}</h1><p className="jp">{m.jp}</p>
  <dl><dt>Nacimiento</dt><dd>{fmt(m.birth)} ({age(m.birth)} años)</dd><dt>Origen</dt><dd>{m.origin}</dd><dt>Grupo sanguíneo</dt><dd>{m.blood}</dd></dl>
  <p className="note">Datos del perfil oficial. No se publican aquí posiciones ni rasgos que la fuente no declare.</p><Ext href={m.source}>Fuente: perfil oficial</Ext>
